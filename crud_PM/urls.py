@@ -20,5 +20,10 @@ from cursos import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.login),
+    path('', views.login, name='login'),
+    path('cursos/', views.consultar_cursos, name='consultar_cursos'),
+    path('agregar/', views.agregar_curso, name='agregar_curso'),
+    path('eliminar/<int:curso_id>/', views.eliminar_curso, name='eliminar_curso'),
+    
+    
 ]

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">Agregar Curso</h2>
+
+    <div class="d-flex justify-content-center">
+        <form method="post" class="card p-4 shadow-sm">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.nombre.label_tag }}
+                {{ form.nombre }}
+            </div>
+            <div class="mb-3">
+                {{ form.descripcion.label_tag }}
+                {{ form.descripcion }}
+            </div>
+            <div class="mb-3">
+                {{ form.fecha_inicio.label_tag }}
+                {{ form.fecha_inicio }}
+            </div>
+            <div class="mb-3">
+                {{ form.fecha_cierre.label_tag }}
+                {{ form.fecha_cierre }}
+            </div>
+            <div class="mb-3">
+                {{ form.horario.label_tag }}
+                {{ form.horario }}
+            </div>
+            <div class="mb-3">
+                {{ form.cupo_disponible.label_tag }}
+                {{ form.cupo_disponible }}
+            </div>
+            <div class="mb-3">
+                {{ form.docente.label_tag }}
+                {{ form.docente }}
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary me-2">Guardar</button>
+                <a href="{% url 'consultar_cursos' %}" class="btn btn-secondary">Regresar a la lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
