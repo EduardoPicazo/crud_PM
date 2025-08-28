@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Bienvenido al sistema de gestión de cursos</h1>
+  <p>Desde aquí puedes gestionar los cursos disponibles.</p>
+  <a href="{% url 'consultar_cursos' %}" class="btn btn-primary">Consultar Cursos</a>
+{% endblock %}

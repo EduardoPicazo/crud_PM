@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% include '_header.html' %}
+    <style>
+      img{
+ width:200px;
+ height:400px;
+ background-color:blue;
+}
+
+.CustomModal .modal-dialog{
+   max-width: fit-content !important;
+   pointer-events: auto;
+   background-color:transparent;
+}
+
+.CustomModal .btn-close{
+    position: absolute;
+    top: -10px;
+    right: -13px;
+    border-radius: 50%;
+    background-color: white;
+    padding: 5px;
+}
+    </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row g-0"><!-- Sidebar + Contenido -->
+      
+      <!-- Sidebar -->
+      <aside class="col-12 col-md-3 col-lg-2 bg-light min-vh-100 p-3 border-end">
+        {% include '_sidebar.html' %}
+      </aside>
+
+      <!-- Contenido dinámico -->
+      <main class="col-12 col-md-9 col-lg-10 p-4">
+        {% block content %}
+        {% endblock %}
+      </main>
+
+    </div>
+  </div>
+</body>
+</html>
