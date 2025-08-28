@@ -30,3 +30,19 @@ def eliminar_curso(request, curso_id):
     messages.success(request, "Curso eliminado con éxito.")
     return redirect('consultar_cursos') 
 
+def editar_curso(request, id):
+    curso = get_object_or_404(Curso, id=id)
+
+    if request.method == "POST":
+        curso.nombre = request.POST.get("nombre")
+        curso.descripcion = request.POST.get("descripcion")
+        curso.fecha_inicio = request.POST.get("fecha_inicio")
+        curso.fecha_cierre = request.POST.get("fecha_cierre")
+        curso.horario = request.POST.get("horario")
+        curso.cupo_disponible = request.POST.get("cupo_disponible")
+        curso.docente = request.POST.get("docente")
+
+        curso.save()
+        messages.success(request, "El curso ha sido actualizado correctamente.")
+
+    return redirect("consultar_cursos")
