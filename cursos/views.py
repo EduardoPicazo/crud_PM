@@ -119,7 +119,12 @@ def crear_docente(request):
         form = DocenteForm(request.POST)
         if form.is_valid():
             form.save()
-    return redirect('lista_docentes')
+            messages.success(request, "Docente registrado correctamente ✅")
+            return redirect('lista_docentes')
+        else:
+            messages.error(request, "Corrige los errores del formulario ❌")
+            return redirect('lista_docentes')
+
 
 def editar_docente(request, id_docente):
     docente = get_object_or_404(Docente, pk=id_docente)
@@ -130,6 +135,10 @@ def editar_docente(request, id_docente):
     return redirect('lista_docentes')
 
 def eliminar_docente(request, id_docente):
-    docente = get_object_or_404(Docente, pk=id_docente)
-    docente.delete()
+    try:
+        docente = get_object_or_404(Docente, pk=id_docente)
+        docente.delete()
+        messages.success(request, f"El docente '{docente.nombre}' fue eliminado correctamente ✅")
+    except Exception as e:
+        messages.error(request, f"No se pudo eliminar el docente ❌: {e}")
     return redirect('lista_docentes')

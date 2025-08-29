@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import RegexValidator
 from django import forms
 
 # Create your models here.
@@ -44,12 +45,30 @@ class Alumno(models.Model):
     
 class Docente(models.Model):
     id_docente = models.AutoField(primary_key=True)
-    matricula = models.CharField(max_length=10)
-    nombre = models.CharField(max_length=50)
-    apellidos = models.CharField(max_length=50)
-    especialidad = models.CharField(max_length=100)
-    telefono = models.CharField(max_length=10)
-    correo = models.EmailField(unique=True)
+    matricula = models.CharField(max_length=10, unique=True, blank=False,
+                                validators=[RegexValidator(
+                                    regex=r'^[A-Z0-9]+$', message="La matrícula solo puede contener mayúsculas y números"
+                                )])
+    nombre = models.CharField(max_length=50, blank=False, validators=[
+        RegexValidator(
+            regex=r'^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$', message="El nombre solo puede contener letras"
+        )])
+    apellidos = models.CharField(max_length=50, blank=False, validators=[
+        RegexValidator(
+            regex=r'^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$',
+                message="El apellido solo puede contener letras"
+        )])
+    especialidad = models.CharField(max_length=100, blank=False, validators=[
+        RegexValidator(
+            regex=r'^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$',
+                message="El la especialidad solo puede contener letras"
+        )])
+    telefono = models.CharField(max_length=10, blank=False, validators=[
+        RegexValidator(
+            regex=r'^\+?[0-9]+$',
+                message="El teléfono solo puede contener números y el signo +"
+        )])
+    correo = models.EmailField(unique=False, blank=False,)
 
     def __str__(self):
         return f"{self.nombre} {self.apellidos}"

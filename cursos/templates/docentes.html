@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %} Docentes | Hosppital {% endblock %}
+{% block title %} Docentes | Hospital {% endblock %}
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h1 class="mb-3">Docentes</h1>
@@ -62,7 +62,7 @@
                                 <input type="email" name="correo" class="form-control mb-2" value="{{ docente.correo }}">
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                                <button type="submit" class="btn btn-primary mb-2"><i class="fa-solid fa-floppy-disk"></i> Guardar cambios</button>
                             </div>
                         </form>
                     </div>
@@ -94,6 +94,16 @@
     </table>
 </div>
 
+{% if messages %}
+    <div>
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
 <!-- Modal Crear -->
 <div class="modal fade" id="crearModal" tabindex="-1">
     <div class="modal-dialog">
@@ -114,7 +124,7 @@
                     <input type="email" name="correo" class="form-control mb-2" placeholder="Correo">
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary me-2">Guardar</button>
+                    <button type="submit" class="btn btn-primary me-2"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
                 </div>
             </form>
         </div>
