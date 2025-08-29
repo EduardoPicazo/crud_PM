@@ -132,4 +132,4 @@ def editar_docente(request, id_docente):
 def eliminar_docente(request, id_docente):
     docente = get_object_or_404(Docente, pk=id_docente)
     docente.delete()
-    return redirect('lista_docente')
+    return redirect('lista_docentes')
