@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">Agregar Alumno</h2>
+
+    <div class="d-flex justify-content-center">
+        <form method="post" class="card p-4 shadow-sm" style="width: 100%; max-width: 600px;">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.nombre.label_tag }} 
+                {{ form.nombre }} 
+            </div>
+            <div class="mb-3">
+                {{ form.apellido.label_tag }} 
+                {{ form.apellido }} 
+            </div>
+            <div class="mb-3">
+                {{ form.correo.label_tag }} 
+                {{ form.correo }} 
+            </div>
+            <div class="mb-3">
+                {{ form.telefono.label_tag }} 
+                {{ form.telefono }} 
+            </div>
+            <div class="mb-3">
+                {{ form.matricula.label_tag }} 
+                {{ form.matricula }} 
+            </div>
+            <div class="mb-3">
+                {{ form.departamento.label_tag }} 
+                {{ form.departamento }} 
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary me-2">Guardar</button>
+                <a href="{% url 'listar_alumnos' %}" class="btn btn-secondary">Regresar a la lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

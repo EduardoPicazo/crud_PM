@@ -32,14 +32,13 @@ class CursoForm(forms.ModelForm):
 
 class Alumno(models.Model):
     nombre = models.CharField(max_length=100)
-    apellido = models.CharField(max_length=50)
-    correo = models.CharField(max_length=120)
+    apellido = models.CharField(max_length=100)
+    correo = models.EmailField(max_length=120)  # Cambié a EmailField
     telefono = models.CharField(max_length=15, blank=True, null=True)
     matricula = models.CharField(max_length=20, unique=True)
-    departamneto = models.CharField(max_length=100)
-    fecha_registro = models.DateField()
-
-
-
-
-
+    departamento = models.CharField(max_length=100)  # Corregí "departamneto" a "departamento"
+    fecha_registro = models.DateTimeField(auto_now_add=True)  # Mejor usar DateTimeField con auto_now_add
+    
+    def __str__(self):
+        return f"{self.nombre} {self.apellido}"
+    
