@@ -1,23 +1,36 @@
-<h4 class="mb-4">Menú</h4>
+{% load static %}
+<div class="ms-auto d-flex align-items-center">
+  <img src="{% static 'img/icono.png' %}" alt="H" class="icono me-2">
+  <h4 class="mb-0">Menú</h4>
+</div>
+
 <ul class="nav flex-column">
   <li class="nav-item">
-    <a href="{% url 'login' %}" class="nav-link text-dark">
+    <a href="{% url 'home' %}" class="nav-link text-dark">
       <i class="fa-solid fa-house me-2"></i> Inicio
     </a>
   </li>
   <li class="nav-item">
     <a href="{% url 'consultar_cursos' %}" class="nav-link text-dark">
-      <i class="fa-solid fa-user me-2"></i> Cursos
+      <i class="fa-solid fa-book-open"></i> Cursos
     </a>
   </li>
   <li class="nav-item">
     <a href="{% url 'listar_alumnos' %}" class="nav-link text-dark">
-      <i class="fa-solid fa-truck me-2"></i> Alumnos
+      <i class="fa-solid fa-graduation-cap"></i> Alumnos
     </a>
   </li>
   <li class="nav-item">
-    <a href="#" class="nav-link text-dark">
-      <i class="fa-solid fa-dolly me-2"></i> Docentes
+    <a href="{% url 'lista_docentes' %}" class="nav-link text-dark">
+      <i class="fa-solid fa-chalkboard-user"></i> Docentes
     </a>
   </li>
 </ul>
+
+<div class="navbar-nav ms-auto">
+  {% if user.is_authenticated %}
+    <a class="nav-link" href="{% url 'logout' %}">
+      <i class="fa-solid fa-power-off"></i> Cerrar Sesión
+    </a>
+  {% endif %}
+</div>

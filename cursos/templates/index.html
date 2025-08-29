@@ -2,33 +2,39 @@
 <html lang="es">
 <head>
     {% include '_header.html' %}
-    <title>Iniciar Sesión | Hospital</title>
+    <title>Login | Hospital General</title>
 </head>
 <body>
+    {% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% load static %}
     <section class="vh-100">
         <div class="container py-5 h-100">
             <div class="row d-flex align-items-center justify-content-center h-100">
                 <div class="col-md-8 col-lg-7 col-xl-6">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
-                    class="img-fluid" alt="Phone image">
+                    <img src="{% static 'img/portada.png' %}"
+                    class="img-fluid w-75 h-auto d-block mx-auto" alt="logo hospital">
                 </div>
                 <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                    <form>
-                    <!-- Email input -->
-                    <div data-mdb-input-init class="form-outline mb-4">
-                        <input type="email" id="form1Example13" class="form-control form-control-lg" placeholder="Tu ususario aqui"/>
-                        <label class="form-label" for="form1Example13">Usuario</label>
-                    </div>
-
-                    <!-- Password input -->
-                    <div data-mdb-input-init class="form-outline mb-4">
-                        <input type="password" id="form1Example23" class="form-control form-control-lg" placeholder="Tu contraseña aqui"/>
-                        <label class="form-label" for="form1Example23">Contraseña</label>
-                    </div>
-
-                    <!-- Submit button -->
-                    <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block">Iniciar Sesión</button>
-
+                    <form method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <div class="form-outline mb-4">
+                            {{ field }}
+                            <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        </div>
+                        {% endfor %}
+                        <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block">
+                            Iniciar Sesión
+                        </button>
                     </form>
                 </div>
             </div>

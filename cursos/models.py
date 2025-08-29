@@ -42,3 +42,14 @@ class Alumno(models.Model):
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
     
+class Docente(models.Model):
+    id_docente = models.AutoField(primary_key=True)
+    matricula = models.CharField(max_length=10)
+    nombre = models.CharField(max_length=50)
+    apellidos = models.CharField(max_length=50)
+    especialidad = models.CharField(max_length=100)
+    telefono = models.CharField(max_length=10)
+    correo = models.EmailField(unique=True)
+
+    def __str__(self):
+        return f"{self.nombre} {self.apellidos}"

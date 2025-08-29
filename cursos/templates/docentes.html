@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% block title %} Docentes | Hosppital {% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="mb-3">Docentes</h1>
+    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#crearModal">
+        <i class="fa-solid fa-user-plus"></i> Nuevo Docente
+    </button>
+</div>
+<div class="table-responsive">
+    <!-- tabla de docentes -->
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Matrícula</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Especialidad</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for docente in docentes %}
+            <tr>
+                <td>{{ docente.id_docente }}</td>
+                <td>{{ docente.matricula }}</td>
+                <td>{{ docente.nombre }}</td>
+                <td>{{ docente.apellidos }}</td>
+                <td>{{ docente.especialidad }}</td>
+                <td>{{ docente.telefono }}</td>
+                <td>{{ docente.correo }}</td>
+                <td>
+                    <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editarModal{{ docente.id_docente }}">
+                        <i class="fa-solid fa-user-pen"></i> Editar
+                    </button>
+                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal{{ docente.id_docente }}">
+                        <i class="fa-solid fa-trash-can"></i> Eliminar
+                    </button>
+                </td>
+            </tr>
+
+            <!-- Modal Editar -->
+            <div class="modal fade" id="editarModal{{ docente.id_docente }}" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form method="POST" action="{% url 'editar_docente' docente.id_docente %}">
+                            {% csrf_token %}
+                            <div class="modal-header">
+                                <h5 class="modal-title">Editar Docente</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Campos del formulario -->
+                                <input type="text" name="matricula" class="form-control mb-2" value="{{ docente.matricula }}">
+                                <input type="text" name="nombre" class="form-control mb-2" value="{{ docente.nombre }}">
+                                <input type="text" name="apellidos" class="form-control mb-2" value="{{ docente.apellidos }}">
+                                <input type="text" name="especialidad" class="form-control mb-2" value="{{ docente.especialidad }}">
+                                <input type="text" name="telefono" class="form-control mb-2" value="{{ docente.telefono }}">
+                                <input type="email" name="correo" class="form-control mb-2" value="{{ docente.correo }}">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Eliminar -->
+            <div class="modal fade" id="eliminarModal{{ docente.id_docente }}" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form method="POST" action="{% url 'eliminar_docente' docente.id_docente %}">
+                            {% csrf_token %}
+                            <div class="modal-header">
+                                <h5 class="modal-title">Eliminar Docente</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                ¿Seguro que deseas eliminar a <b>{{ docente.nombre }} {{ docente.apellidos }}</b>?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal Crear -->
+<div class="modal fade" id="crearModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST" action="{% url 'crear_docente' %}">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title">Nuevo Docente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Campos del formulario -->
+                    <input type="text" name="matricula" class="form-control mb-2" placeholder="Matrícula">
+                    <input type="text" name="nombre" class="form-control mb-2" placeholder="Nombre">
+                    <input type="text" name="apellidos" class="form-control mb-2" placeholder="Apellidos">
+                    <input type="text" name="especialidad" class="form-control mb-2" placeholder="Especialidad">
+                    <input type="text" name="telefono" class="form-control mb-2" placeholder="Teléfono">
+                    <input type="email" name="correo" class="form-control mb-2" placeholder="Correo">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary me-2">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

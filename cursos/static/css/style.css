@@ -1,0 +1,6 @@
+.icono {
+    width: 40px !important;   /* ajusta el tamaño */
+    height: 40px !important;  /* igual altura */
+    object-fit: contain;      /* mantiene proporción */
+    background-color: transparent !important; /* fuerza transparencia */
+}

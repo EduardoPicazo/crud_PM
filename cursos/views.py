@@ -1,15 +1,40 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .models import Curso, Alumno
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from .models import Curso, Alumno, Docente
+from .forms import LoginForm, AlumnoForm, DocenteForm
 from cursos.models import Curso, CursoForm
-from .forms import AlumnoForm
 
 # Create your views here.
-def login (request):
-    return render(request, "inicio.html")
+#Login
+def login_view(request):
+    if request.method == 'POST':
+        form = LoginForm(request, data=request.POST)
+        
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
 
+            if user is not None:
+                login(request, user)
+                return redirect('home') #nos redirigimos a la pagina principal
+        else:
+            messages.error(request, 'Por favor, ingresa un usuario y contraseña válidos.')
+    else:
+        form = LoginForm()
+    return render(request, 'index.html', {'form': form})
 
+@login_required(login_url='login')
+def home_view(request):
+    return render(request, 'inicio.html')
 
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+
+#Cursos
 def consultar_cursos(request):
     cursos = Curso.objects.all()
     return render(request, 'cursos.html', {'cursos': cursos})
@@ -82,3 +107,29 @@ def eliminar_alumno(request, id):
         alumno.delete()
         return redirect('listar_alumnos')
     return render(request, 'eliminar_alumno.html', {'alumno': alumno})
+
+#Docentes
+def lista_docentes(request):
+    docentes = Docente.objects.all()
+    form = DocenteForm()
+    return render(request, 'docentes.html', {'docentes': docentes, 'form': form})
+
+def crear_docente(request):
+    if request.method == 'POST':
+        form = DocenteForm(request.POST)
+        if form.is_valid():
+            form.save()
+    return redirect('lista_docentes')
+
+def editar_docente(request, id_docente):
+    docente = get_object_or_404(Docente, pk=id_docente)
+    if request.method == 'POST':
+        form = DocenteForm(request.POST, instance=docente)
+        if form.is_valid():
+            form.save()
+    return redirect('lista_docentes')
+
+def eliminar_docente(request, id_docente):
+    docente = get_object_or_404(Docente, pk=id_docente)
+    docente.delete()
+    return redirect('lista_docente')
