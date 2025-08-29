@@ -1,0 +1,7 @@
+#Archivo de entorno y seguridad
+.env
+
+#Archivos de BD
+*.sqlite3
+db.sqlite3
+*.sql
