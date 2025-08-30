@@ -68,7 +68,7 @@ class Docente(models.Model):
             regex=r'^\+?[0-9]+$',
                 message="El teléfono solo puede contener números y el signo +"
         )])
-    correo = models.EmailField(unique=False, blank=False,)
+    correo = models.EmailField(unique=True, blank=False,)
 
     def __str__(self):
         return f"{self.nombre} {self.apellidos}"
