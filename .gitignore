@@ -1,5 +1,5 @@
 #Archivo de entorno y seguridad
-*.env
+.env
 
 #Archivos de BD
 *.sqlite3
