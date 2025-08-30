@@ -54,10 +54,35 @@ El modelo de datos define la relación entre los docentes, cursos y alumnos.
 * /cursos/ → Listado de cursos
 * /agregar/ → Crear curso
 
+🗃️ Base de datos y migraciones
+
+* El proyecto usa MariaDB como base por defecto.
+* Incluye todas las migraciones necesarias.
+* Opcionalmente puedes cargar datos de prueba con:
+
+    python manage.py loaddata fixtures/seed.json
+
+
 📂 Evidencia
 
 Ejemplos del CRUD en funcionamiento:
 
-* Listado de cursos
+* ![Login](evidencias/login.jpg)
 
-* Creación de docente
+* ![Pagina de inicio](evidencias/inicio.jpg)
+
+* ![Mostrar de alumnos](evidencias/mostrar.jpg)
+
+* ![Agregar cursos](evidencias/agregar_curso.jpg)
+
+* ![Mensaje de confirmacion 1](evidencias/confirmacion1.jpg)
+
+* ![Agregar docente](evidencias/agregar_docente.jpg)
+
+* ![Mostrar de alumnos](evidencias/mostrar.jpg)
+
+* ![Editar curso](evidencias/editar.jpg)
+
+* ![Eliminar alumno](evidencias/eliminar.jpg)
+
+* ![Mensaje de confirmacion 2](evidencias/confirmacion2.jpg)
