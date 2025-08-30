@@ -17,7 +17,7 @@ El modelo de datos define la relación entre los docentes, cursos y alumnos.
 * Un curso puede tener varios alumnos.
 * Un alumno puede estar inscrito en varios cursos.
 
- ![DiagramaER](evidencias/diagramaER.jpg)
+ ![DiagramaER](evidencias/diagramaER.png)
 
 
 ⚙️ Instalación y ejecución:
