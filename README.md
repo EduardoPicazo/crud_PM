@@ -66,6 +66,20 @@ El modelo de datos define la relación entre los docentes, cursos y alumnos.
     python manage.py loaddata fixtures/seed.json
 
 
+
+✅ Casos de prueba
+
+* Crear un docente y asignarlo a un curso.
+
+* Registrar un nuevo alumno.
+
+* Inscribir un alumno en un curso.
+
+* Editar el nombre de un curso existente.
+
+* Eliminar un docente y verificar que desaparezca de la lista.
+
+
 📂 Evidencia
 
 Ejemplos del CRUD en funcionamiento:
