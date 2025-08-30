@@ -4,4 +4,4 @@
 #Archivos de BD
 *.sqlite3
 db.sqlite3
-*.sql
+
