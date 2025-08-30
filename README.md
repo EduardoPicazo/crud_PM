@@ -20,14 +20,14 @@ El modelo de datos define la relación entre los docentes, cursos y alumnos.
 ⚙️ Instalación y ejecución:
 
 1. Clonar el repositorio
-    git clone https://github.com/EduardoPicazo/crud_PM.git
-    cd crud_PM
+    * git clone https://github.com/EduardoPicazo/crud_PM.git
+    * cd crud_PM
 
 2. Instalar dependencias
-    pip install -r requirements.txt
+    * pip install -r requirements.txt
 
 3. Configurar variables de entorno
-    Copia el archivo .env.example a .env y actualiza los valores con tus credenciales:
+    * Copia el archivo .env.example a .env y actualiza los valores con tus credenciales:
 
     DB_NAME=tu_db
     DB_USER=tu_usuario
@@ -36,13 +36,13 @@ El modelo de datos define la relación entre los docentes, cursos y alumnos.
     DB_PORT=ejp: 3306
 
 4. Migrar base de datos
-    python manage.py migrate
+    * python manage.py migrate
 
 5. Crear superusuario
-    python manage.py createsuperuser
+    * python manage.py createsuperuser
 
 6. Ejecutar servidor
-    python manage.py runserver
+    * python manage.py runserver
 
 
 🌐 Rutas clave
